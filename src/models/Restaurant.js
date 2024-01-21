@@ -47,6 +47,9 @@ const Restaurant = sequelize.define(
          type: DataTypes.FLOAT,
          allowNull: false,
       },
+      location: {
+         type: DataTypes.GEOMETRY('POINT', 4326),
+      },
    },
    {
       timestamps: false,

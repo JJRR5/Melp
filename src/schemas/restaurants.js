@@ -44,10 +44,34 @@ const restaurantSchema = z.object({
    }),
 });
 
+const statsSchema = z.object({
+   latitude: z
+      .string()
+      .transform(parseFloat)
+      .refine((value) => !isNaN(value), {
+         message: 'lat must be a number',
+      }),
+   longitude: z
+      .string()
+      .transform(parseFloat)
+      .refine((value) => !isNaN(value), {
+         message: 'lng must be a number',
+      }),
+   radius: z
+      .string()
+      .transform(parseFloat)
+      .refine((value) => !isNaN(value), {
+         message: 'radius must be a number',
+      }),
+});
 export function validateRestaurant(input) {
    return restaurantSchema.safeParse(input);
 }
 
 export function validatePartialRestaurant(input) {
    return restaurantSchema.partial().safeParse(input);
+}
+
+export function validateStats(input) {
+   return statsSchema.safeParse(input);
 }

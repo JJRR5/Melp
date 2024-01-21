@@ -1,1 +1,1 @@
-Revolutionary iapp that will provide useful information about restaurants to users.
+Revolutionary app that will provide useful information about restaurants to users.
