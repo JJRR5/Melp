@@ -11,7 +11,7 @@ import Sequelize from 'sequelize';
 export const getRestaurants = async (_, res) => {
    try {
       const restaurants = await Restaurant.findAll();
-      res.json({ data: restaurants, total: restaurants.length });
+      res.json({ total: restaurants.length, data: restaurants });
    } catch (error) {
       res.status(500).json({ message: error.message });
    }
@@ -60,7 +60,7 @@ export const deleteRestaurant = async (req, res) => {
       const restaurant = await Restaurant.findByPk(id);
       if (!restaurant) throw new Error('restaurant not found');
       await restaurant.destroy();
-      res.json({ data: restaurant });
+      res.status(204).send();
    } catch (error) {
       res.status(404).json({ message: error.message });
    }
