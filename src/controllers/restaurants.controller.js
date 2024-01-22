@@ -6,6 +6,7 @@ import {
 import Restaurant from '../models/Restaurant.js';
 import { calcAverage, calcStandarDeviation } from '../utils.js';
 import sequelize from '../database/db.js';
+import Sequelize from 'sequelize';
 
 export const getRestaurants = async (_, res) => {
    try {
@@ -40,11 +41,7 @@ export const createRestaurant = async (req, res) => {
             );
          const newRestaurant = await Restaurant.create({
             ...validation.data,
-            location: {
-               type: 'Point',
-               coordinates: [lng, lat],
-               crs: { type: 'name', properties: { name: 'EPSG:4326' } },
-            },
+            location: Sequelize.fn('ST_MakePoint', lng, lat),
          });
          return res.status(201).json({ data: newRestaurant });
       } catch (error) {

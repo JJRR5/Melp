@@ -40,6 +40,12 @@ To execute the migrations, run the following command:
 npm run migrate
 ```
 
+To execute the seeders, run the following command:
+
+```bash
+npm run seed
+```
+
 ## Endpoints 🌐
 
 1. **GET Restaurant by ID**
